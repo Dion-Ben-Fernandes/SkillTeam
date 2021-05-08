@@ -25,7 +25,7 @@ SECRET_KEY = 'm7wyo284p=mr^adgotjqh50fxqonjn5o043lq+(g#2rwgbg=!n'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ['skillteam-dbf.herokuapp.com/','127.0.0.1'] # 'skillteam-dbf.herokuapp.com/','127.0.0.1'
+ALLOWED_HOSTS = ['skillteam.herokuapp.com/','127.0.0.1'] # 'skillteam-dbf.herokuapp.com/','127.0.0.1'
 
 
 # Application definition
