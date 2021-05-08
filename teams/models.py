@@ -47,6 +47,7 @@ class Member(models.Model):
 	skills = models.ManyToManyField(Skill,blank=True)
 	teams = models.ManyToManyField(Team,blank=True)
 	date_created = models.DateTimeField(auto_now_add=True)
+	profile_image = models.ImageField(null=True,blank=True)
 
 	def __str__(self):
 		return self.user_name

@@ -33,6 +33,11 @@ urlpatterns = [
 
     # teamChatRoom : pk_user=user.username , pk_team=team.name
     path('<str:pk_team>/chatroom/<str:pk_user>/', views.teamChatRoom, name="teamChatRoom"),
+    # removeMember : pk_user=team.owner , pk_team=team.name , pk_member=member.user_name
+    path('<str:pk_user>/<str:pk_team>/remove/<str:pk_member>', views.removeMember, name="removeMember"),
+
+    # profileMember : pk_user=user.username , pk_member=member.name
+    path('<str:pk_user>/profile/<str:pk_member>', views.profileMember, name="profileMember"),
     
     # search : pk_user=user.username
     path('<str:pk_user>/search/',views.search, name="search"),

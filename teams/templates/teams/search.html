@@ -29,7 +29,7 @@
         <td>
             <div class="card" style="width: 18rem;margin: 10px 5px 0px;">
             <div class="card-body">
-                <h5 class="card-title">{{member.user_name}}</h5>
+                <h5 class="card-title"><a href="{% url 'profileMember' pk_user=user.username pk_member=member.user_name %}">{{member.user_name}}</a></h5>
                 <p class="card-text">
                     {% for skill in member.skills.all %}
                         {{skill.name}}{% if not forloop.last %},{% endif %}
@@ -49,7 +49,7 @@
     {% endfor %}
     </table>
     {% elif word != None %}
-        <h5>Member(s) with Username :{{ word }} NOT FOUND</h5>
+        <h5>Member(s) with Username : {{ word }} NOT FOUND</h5>
     {% endif %}
 
     <hr style=" border: 1px solid #132c33;border-radius: 2px;width:50%;">
@@ -97,7 +97,7 @@
     {% endfor %}
     </table>
     {% elif word != None %}
-        <h5>Team(s) with Name :{{ word }} NOT FOUND</h5>
+        <h5>Team(s) with Name : {{ word }} NOT FOUND</h5>
     {% endif %}
     </div>
 {% endblock %}

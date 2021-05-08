@@ -82,7 +82,7 @@ def profileUpdate(request,pk_test):
 	form = MemberForm(instance=member)
 	if request.method == 'POST':
 		#print('Printing POST:', request.POST)
-		form = MemberForm(request.POST, instance=member)
+		form = MemberForm(request.POST,request.FILES,instance=member)
 		if form.is_valid():
 			form.save()
 			email = form.cleaned_data.get('email')
@@ -255,6 +255,11 @@ def leaveTeam(request,pk_user,pk_team):
 	team = Team.objects.get(name=pk_team)
 	if request.method == "POST":
 		member.teams.remove(team)
+		if not team.member_set.all():
+			team.delete()
+		else:
+			team.owner = team.member_set.first().user_name
+			team.save()
 		return redirect('/')
 
 	context = {
@@ -339,6 +344,7 @@ def teamChatRoom(request,pk_user,pk_team):
 					"chat_messages":chat_messages,
 					"form":form,
 					"display_chat_messages":display_chat_messages,
+					"user":user,
 		}
 	return render(request,"teams/chatroom.html",context) 
 
@@ -367,6 +373,43 @@ def search(request,pk_user):
 				"member_user":member_user,
 			}
 	return render(request,"teams/search.html",context)
+
+@login_required(login_url='login')
+def removeMember(request,pk_user,pk_team,pk_member):
+	print('RemoveMemberPage\n')
+	print(pk_user)
+	print(pk_team)
+	print(pk_member)
+	user = User.objects.get(username = pk_user)
+	member = Member.objects.get(user_name=pk_member)
+	team = Team.objects.get(name=pk_team)
+	if request.method == "POST":
+		member.teams.remove(team)
+		return redirect('teamChatRoom',pk_user=user.username,pk_team=team.name)
+
+	context = {
+				"member":member,
+				"team":team,
+				"user":user,
+	}
+	return render(request,'teams/removemember.html',context)
+
+@login_required(login_url='login')
+def profileMember(request,pk_user,pk_member):
+	print('ProfileMemberPage\n')
+
+	user = User.objects.get(username=pk_user)
+	member = Member.objects.get(user_name=pk_member)
+
+	context = {
+					"member":member,
+					"user":user
+	}
+	return render(request,'teams/profileMember.html',context)
+
+
+
+
 
 # class SearchView(ListView):
 #     model = Member

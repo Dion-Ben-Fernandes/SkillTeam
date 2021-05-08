@@ -24,6 +24,8 @@
         <tr></tr>
     {% endif %}
 {% empty %}
-    <h5>NONE</h5>
+    {% if forloop.last == true %}
+        <h5>NONE</h5>
+    {% endif %}
 {% endfor %}
 </table>

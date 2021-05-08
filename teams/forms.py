@@ -27,8 +27,9 @@ class MemberForm(ModelForm):
 					'first_name',
 					'middle_name',
 					'last_name',
+					'profile_image',
 					'email',
-					'skills'
+					'skills',
 				]
 
 class CreateUserForm(UserCreationForm):

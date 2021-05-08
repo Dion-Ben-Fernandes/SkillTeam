@@ -111,7 +111,7 @@
 			}
             #id_member_message {
                 width: 500px;
-                height: 10px;
+                height: 50px;
             }
 	</style>
 </head>
@@ -137,7 +137,16 @@
       </td>
       <td>
         {% for member_name in member_list %}
-            {{ member_name }}<br>
+            <a href="{% url 'profileMember' pk_user=user.username pk_member=member_name %}"><strong>{{ member_name }}</strong></a> 
+			{% if user.username == team.owner %}
+				<small>
+				{% if member_name.user_name == team.owner %}
+					<a style='color:orange;' href="{% url 'leaveTeam' pk_user=member.user_name pk_team=team.name %}" class="card-link">Leave</a> 
+				{% else %}
+					<a style='color:red;' href="{% url 'removeMember' pk_user=team.owner pk_team=team.name pk_member=member_name %}">Remove</a>
+				{% endif %}
+				</small>
+			{% endif %}<br>
         {% endfor %}
       </td>
     </tr>

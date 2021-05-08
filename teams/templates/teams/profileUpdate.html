@@ -16,7 +16,7 @@
 			background: #7abecc !important;
 		}
 		.user_card {
-			width: 350px;
+			width: 550px;
 			margin-top: auto;
 			margin-bottom: auto;
 			background: #74cfbf;
@@ -76,9 +76,10 @@
 				</div>
 				<div class="d-flex justify-content-center form_container">
 
-					<form method="POST" action="">
+					<form method="POST" action="" enctype="multipart/form-data">
 						{% csrf_token %}
-						<div class="input-group mb-3">
+						{{form.as_p}}
+						{% comment %} <div class="input-group mb-3">
 							{{form.first_name}}
 						</div>
 						<div class="input-group mb-2">
@@ -90,10 +91,14 @@
 						<div class="input-group mb-2">
 							{{form.email}}
 						</div>
+						<div class="input-group mb-2">
+							{{form.profile_image}}
+						</div>
 						<div style='test-align:center;' class="input-group mb-2">
 							{{ form.skills }}
 							<h6>Note: Use Ctrl to select more then one</h6>
-						</div>
+						</div> {% endcomment %}
+						<h6>Note: Use Ctrl to select more then one</h6>
 						{% if member.first_name != None %}
 							<a href="{% url 'skillCreate' user.username %}">
 								<div class="d-flex justify-content-center mt-3 login_container">

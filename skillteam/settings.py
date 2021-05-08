@@ -23,9 +23,9 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = 'm7wyo284p=mr^adgotjqh50fxqonjn5o043lq+(g#2rwgbg=!n'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
-ALLOWED_HOSTS = ['skillteam-dbf.herokuapp.com/','127.0.0.1']
+ALLOWED_HOSTS = [] # 'skillteam-dbf.herokuapp.com/','127.0.0.1'
 
 
 # Application definition
@@ -125,9 +125,9 @@ STATIC_ROOT = os.path.join(BASE_DIR,'staticfiles')
 
 STATIC_URL = '/static/'
 
-MEDIA_URL = '/media/'
+MEDIA_URL = '/images/'
 
-MEDIA_ROOT = os.path.join(BASE_DIR,'media')
+MEDIA_ROOT = os.path.join(BASE_DIR,'static/images')
 
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR,'static')
